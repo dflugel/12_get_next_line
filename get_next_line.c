@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:56:01 by dflugel           #+#    #+#             */
-/*   Updated: 2024/03/20 18:59:18 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/03/27 14:03:52 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ char	*get_next_line(int fd);
 
 char	*get_next_line(int fd)
 {
-	char	*result;
+	char			*result;
+	static t_list	*temp;
 
-	t_list	*temp;
 	get_as_list(temp, fd);
 	return (result);
 }
 
-t_list	get_as_list(t_list *lst, int fd)
+/*t_list	get_as_list(t_list *lst, int fd)
 {
 	char	letter;
 	t_list	*temp;
@@ -37,5 +37,4 @@ t_list	get_as_list(t_list *lst, int fd)
 		ft_lstadd_back(lst, temp);
 		read(fd, letter, 1);
 	}
-	
-}
+}*/
