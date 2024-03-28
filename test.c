@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:50:30 by dflugel           #+#    #+#             */
-/*   Updated: 2024/03/27 16:22:10 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/03/28 23:33:26 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "get_next_line.h"
+
+int		ft_list_append(t_list **lst, char letter);
+void	ft_print_list(t_list **lst);
 
 void	check_leaks(void)
 {
@@ -25,14 +28,14 @@ int	main(void)
 	atexit(check_leaks);
 	FILE			*file_ptr;
 	char			*text;
-	char			*text2;
 	int				i;
-	//static t_list	*temp;
+	static t_list	*next_line = NULL;
+	char			temp;
 
 	text = malloc(10);
-	//text2 = malloc(10);
 	file_ptr = fopen("testtext.txt", "r+");
 	i = 0;
+	temp = '\0';
 	while (i < 10)
 	{
 		read(3, (text + i), 1);
@@ -41,33 +44,58 @@ int	main(void)
 	i = 0;
 	while (i < 10)
 	{
-		read(3, (text2 + i), 1);
+		ft_list_append(next_line, temp);
 		i++;
 	}
-	printf("%s\n%s\n", text, text2);
+	printf("%s\n", text);
+	ft_print_list(next_line);
 	fclose(file_ptr);
 	return (0);
 }
 
-int	ft_list_append(t_list **lst, char *letter)
+void	ft_print_list(t_list **lst)
 {
+	write(1, "pb\n", 3);
+	t_list	*temp;
+
+	temp = *lst;
+	while (temp->next != NULL)
+	{
+		printf("%c", temp->content);
+		temp = temp->next;
+	}
+	printf("\n");
+	write(1, "pe\n", 3);
+}
+
+int	ft_list_append(t_list **lst, char letter)
+{
+	write(1, "ab\n", 3);
 	t_list	*new;
 	t_list	*temp;
 
 	if (!lst || !letter)
 		return (-1);
 	new = malloc(sizeof(t_list));
+	write(1, "ae\n", 3);
 	if (!new)
 		return (-1);
 	new->content = letter;
-	temp = *lst;
-	while (temp->next != NULL)
+	if (*lst == NULL)
+		{
+			*lst = new;
+		}
+	else
 	{
-		temp = temp->next;
+		temp = *lst;
+		while (temp->next != NULL)
+			temp = temp->next;
+		if (temp)
+		{
+			temp->next = new;
+			new->next = NULL;
+		}
 	}
-	if (temp != 0)
-	{
-		temp->next = new;
-	}
+	write(1, "ae\n", 3);
 	return (1);
 }

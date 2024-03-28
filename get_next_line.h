@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:55:59 by dflugel           #+#    #+#             */
-/*   Updated: 2024/03/27 13:57:04 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/03/28 23:15:18 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_list
 {
-	void			*content;
+	char			content;
 	struct s_list	*next;
 }					t_list;
 
