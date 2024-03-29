@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:54:28 by dflugel           #+#    #+#             */
-/*   Updated: 2024/03/27 13:55:41 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/03/29 16:21:02 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ void	ft_lstclear(t_list **lst)
 	while (current != NULL)
 	{
 		next = current->next;
-		if (lst == NULL)
+		if (*lst == NULL)
 		{
 			return ;
 		}
-		free(lst);
+		current->content = '\0';
+		free(current);
 		current = next;
 	}
 	*lst = NULL;
