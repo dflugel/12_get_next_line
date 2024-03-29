@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:50:30 by dflugel           #+#    #+#             */
-/*   Updated: 2024/03/29 16:25:39 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/03/29 16:43:35 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ int		ft_list_append(t_list **lst, char letter);
 void	ft_print_list(t_list **lst);
 void	ft_lstclear(t_list **lst);
 
-/* void	check_leaks(void)
-{
-	system("leaks test.o");
-} */
-
 int	main(void)
 {
 	//atexit(check_leaks);
@@ -33,7 +28,7 @@ int	main(void)
 	static t_list	*next_line;
 	char			temp;
 
-	text = malloc(10);
+	text = malloc(11);
 	file_ptr = fopen("testtext.txt", "r+");
 	i = 0;
 	temp = '\0';
@@ -46,6 +41,7 @@ int	main(void)
 		read(3, (text + i), 1);
 		i++;
 	}
+	*(text + i) = '\0';
 	printf("%s", text);
 	i = 0;
 	while (i < 10)
@@ -57,14 +53,13 @@ int	main(void)
 	ft_print_list(&next_line);
 	ft_lstclear(&next_line);
 	free(next_line);
+	free(text);
 	fclose(file_ptr);
-	printf("Programm-Ende\n");
 	return (0);
 }
 
 void	ft_print_list(t_list **lst)
 {
-	//write(1, "pb\n", 3);
 	t_list	*temp;
 
 	temp = *lst;
@@ -74,16 +69,13 @@ void	ft_print_list(t_list **lst)
 		temp = temp->next;
 	}
 	printf("%c", temp->content);
-	//write(1, "pe\n", 3);
 }
 
 int	ft_list_append(t_list **lst, char letter)
 {
-	//write(1, "ab\n", 3);
 	t_list	*new;
 	t_list	*temp;
 
-	//printf("Addresse: %p, Inhalt: %c\n", lst, letter);
 	if (!lst || !letter)
 		return (-1);
 	new = malloc(sizeof(t_list));
@@ -105,7 +97,6 @@ int	ft_list_append(t_list **lst, char letter)
 			new->next = NULL;
 		}
 	}
-	//write(1, "ae\n", 3);
 	return (1);
 }
 
@@ -122,7 +113,7 @@ void	ft_lstclear(t_list **lst)
 		{
 			return ;
 		}
-		free(lst);
+		free(current);
 		current = next;
 	}
 	*lst = NULL;
