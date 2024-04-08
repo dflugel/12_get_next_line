@@ -6,11 +6,12 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:56:01 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/03 17:05:06 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/08 14:13:32 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 char	*get_next_line(int fd);
 int		ft_list_append(t_list **lst, char letter);
@@ -26,16 +27,14 @@ char	*get_next_line(int fd)
 
 	i = 0;
 	temp = '\0';
-	line_list = malloc(sizeof(t_list));
-	if (!line_list)
-		return (0);
-	line_list->next = NULL;
-	while (i < 10)
+	line_list = NULL;
+	while (temp != '\n')
 	{
 		read(fd, &temp, 1);
 		ft_list_append(&line_list, temp);
 		i++;
 	}
+	ft_list_append(&line_list, temp);
 	next_line = ft_list_to_string(&line_list);
 	ft_lstclear(&line_list);
 	free(line_list);
@@ -64,7 +63,7 @@ char	*ft_list_to_string(t_list **lst)
 		temp = temp->next;
 	}
 	*(str + len++) = '\0';
-	return(str);
+	return (str);
 }
 
 int	ft_list_append(t_list **lst, char letter)
@@ -78,8 +77,10 @@ int	ft_list_append(t_list **lst, char letter)
 	if (!new)
 		return (-1);
 	new->content = letter;
-	if (lst == NULL)
+	if (NULL == *lst)
+	{
 		*lst = new;
+	}
 	else
 	{
 		temp = *lst;
