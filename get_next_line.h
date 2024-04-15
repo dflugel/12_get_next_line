@@ -6,12 +6,18 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:55:59 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/03 16:57:41 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/15 11:09:00 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#ifndef FT_GET_NEXT_LINE_H
+# define FT_GET_NEXT_LINE_H
+# include <unistd.h>
+# include <stdlib.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 // Structs
 
@@ -28,3 +34,5 @@ int		ft_list_append(t_list **lst, char letter);
 char	*ft_list_to_string(t_list **lst);
 
 // utils
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:56:01 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/08 14:13:32 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:57:11 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,28 @@ void	ft_lstclear(t_list **lst);
 
 char	*get_next_line(int fd)
 {
-	int				i;
 	static t_list	*line_list;
 	char			temp;
 	char			*next_line;
+	int				error;
 
-	i = 0;
-	temp = '\0';
+	temp = 'i';
 	line_list = NULL;
-	while (temp != '\n')
+	while (temp != '\n' && temp != '\0')
 	{
-		read(fd, &temp, 1);
+		error = read(fd, &temp, 1);
+		if (error < 0)
+		{
+			ft_lstclear(&line_list);
+			free(line_list);
+			return (NULL);
+		}
+		if (temp == '\0' && line_list == NULL)
+		{
+			free(line_list);
+			return (NULL);
+		}
 		ft_list_append(&line_list, temp);
-		i++;
 	}
 	ft_list_append(&line_list, temp);
 	next_line = ft_list_to_string(&line_list);
@@ -77,6 +86,7 @@ int	ft_list_append(t_list **lst, char letter)
 	if (!new)
 		return (-1);
 	new->content = letter;
+	new->next = NULL;
 	if (NULL == *lst)
 	{
 		*lst = new;
@@ -84,13 +94,10 @@ int	ft_list_append(t_list **lst, char letter)
 	else
 	{
 		temp = *lst;
-		while (temp->next != NULL)
+		while (temp->next != NULL) //problematic line
 			temp = temp->next;
 		if (temp)
-		{
 			temp->next = new;
-			new->next = NULL;
-		}
 	}
 	return (1);
 }
