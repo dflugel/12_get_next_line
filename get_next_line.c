@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:56:01 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/15 10:57:11 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/16 12:56:45 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_line(int fd)
 
 	temp = 'i';
 	line_list = NULL;
-	while (temp != '\n' && temp != '\0')
+	while (temp != '\n' && temp != 0)
 	{
 		error = read(fd, &temp, 1);
 		if (error < 0)
@@ -36,7 +36,7 @@ char	*get_next_line(int fd)
 			free(line_list);
 			return (NULL);
 		}
-		if (temp == '\0' && line_list == NULL)
+		if (temp == 0 && line_list == NULL)
 		{
 			free(line_list);
 			return (NULL);
@@ -94,7 +94,7 @@ int	ft_list_append(t_list **lst, char letter)
 	else
 	{
 		temp = *lst;
-		while (temp->next != NULL) //problematic line
+		while (temp->next != NULL)
 			temp = temp->next;
 		if (temp)
 			temp->next = new;

@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:50:30 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/08 14:14:35 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/16 13:02:34 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ int	main(void)
 	char	*text;
 
 	file_ptr = fopen("testtext.txt", "r+");
-	text = get_next_line(3);
-	printf("1: %s", text);
+	//text = get_next_line(3);
+	text = malloc(1);
+	read(3, text, 1);
+	printf("1: %s\n", text);
+	if (*text == 0)
+	{
+		printf("Correct");
+	}
 	free(text);
-	text = get_next_line(3);
-	printf("2: %s", text);
-	free(text);
+	//text = get_next_line(3);
+	//printf("2: %s", text);
+	//free(text);
 	fclose(file_ptr);
 	return (0);
 }

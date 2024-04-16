@@ -6,12 +6,13 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:55:59 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/15 11:09:00 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/16 12:46:37 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GET_NEXT_LINE_H
-# define FT_GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
 # include <unistd.h>
 # include <stdlib.h>
 
