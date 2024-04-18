@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:56:01 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/17 11:17:59 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/18 15:14:24 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,13 @@ char	*get_next_line(int fd)
 	error = read(fd, &temp, 1);
 	if (temp == 0 || error < 0)
 		return (NULL);
-	while (temp != '\n' && temp != 0)
+	ft_list_append(&line_list, temp);
+	while (temp != '\n' && error != 0)
 	{
-		ft_list_append(&line_list, temp);
-		error = read(fd, &temp, 1);
+		error = read(fd, &temp, BUFFER_SIZE);
 		if (error < 0)
 			return (ft_lstclear(&line_list), free(line_list), NULL);
+		ft_list_append(&line_list, temp);
 	}
 	if (temp == '\n')
 		ft_list_append(&line_list, temp);

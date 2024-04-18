@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:50:30 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/17 11:16:13 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/18 15:10:24 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(void)
 
 	file_ptr = fopen("testtext.txt", "r+");
 	text = get_next_line(3);
-	printf("Test");
 	printf("1: %s\n", text);
 	free(text);
 	text = get_next_line(3);
