@@ -1,1 +1,23 @@
-lorem ipsum
+GNL Plan
+
+gnl
+	Variables and initiations
+	Loop (until nl || error = 0):
+		clear(buf)
+		Read into buf
+		Findnl (buf)
+		Append (list, buf, place)
+	save list to string until nl (when next == NULL: only until nl)
+	polish list (clear everything before nl)
+
+Append (list, *buf, place)
+	Loop
+		list>content = *(buf + i)
+
+
+
+Test:
+	create list
+	Loop
+		print list
+	free list

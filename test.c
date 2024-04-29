@@ -6,7 +6,7 @@
 /*   By: dflugel <dflugel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 22:50:30 by dflugel           #+#    #+#             */
-/*   Updated: 2024/04/18 15:10:24 by dflugel          ###   ########.fr       */
+/*   Updated: 2024/04/25 11:29:16 by dflugel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_print_list(t_list **lst)
 	temp = *lst;
 	while (temp->next != NULL)
 	{
-		printf("%c", temp->content);
+		printf("%s", temp->content);
 		temp = temp->next;
 	}
-	printf("%c", temp->content);
+	printf("%s", temp->content);
 }
